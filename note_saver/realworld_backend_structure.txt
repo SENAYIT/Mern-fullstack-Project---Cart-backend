@@ -1,0 +1,34 @@
+In real-world Node.js + Express apps, developers organize routes, controllers, models, and middlewares into separate folders to keep the code modular, readable, and scalable.
+
+Here’s a recommended structure for building routes like:
+
+    1. Login
+
+    2. Register
+
+    3. CRUD operations for users (Create, Read, Update, Delete)
+
+✅ 1. Folder Structure (Professional Style)
+
+project/
+│
+├── controllers/
+│   └── authController.js
+│   └── userController.js
+│
+├── models/
+│   └── User.js
+│
+├── routes/
+│   └── auth.js
+│   └── users.js
+│
+├── middlewares/
+│   └── authMiddleware.js   ← (like token, or any )
+│
+├── config/
+│   └── db.js           ← (MongoDB or DB connection)
+│
+├── .env                ← (Secret keys, DB URI, etc.)
+├── server.js           ← (Main app file)
+└── package.json
