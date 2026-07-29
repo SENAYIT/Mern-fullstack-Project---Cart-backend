@@ -16,8 +16,6 @@ const protectedProfile = require("./routes/protectedProfile");
 dotenv.config();
 const app = express();
 // app.use(cors());// only for test
-const cors = require("cors");
-
 app.use(
   cors({
     origin: ["http://localhost:3000", process.env.ADMIN_FRONTEND_URL],
