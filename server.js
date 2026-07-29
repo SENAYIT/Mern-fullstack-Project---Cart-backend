@@ -29,13 +29,13 @@ app.use("/api/customers", crudCustomer);
 app.use("/api/protected", protectedProfile); // for protected profile page - route
 
 // // Test route from previuos at the first  post testing practice
-// app.get("/", (req, res) => {
-//   return res.send("Hello, World!"); // it shows this in the Server running on http://localhost:3000 if you open in teh browser
-// });
+app.get("/", (req, res) => {
+  return res.send("Hello, World!"); // it shows this in the Server running on http://localhost:3000 if you open in teh browser
+});
 
-// app.get("/hello", (req, res) => {
-//   res.send("Hello from the backend!"); // it can show this in the Server running on http://localhost:3000/hello if you open in teh browser
-// });
+app.get("/hello", (req, res) => {
+  res.send("Hello from the backend!"); // it can show this in the Server running on http://localhost:3000/hello if you open in teh browser
+});
 
 // ////////////
 
