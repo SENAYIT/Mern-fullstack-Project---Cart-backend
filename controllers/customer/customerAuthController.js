@@ -1,11 +1,11 @@
-const Customer = require("../models/Customer");
+const Customer = require("../../models/Customer");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 
 // register - create customer
 exports.customerRegister = async (req, res) => {
   try {
-    const { name, image_url, email, phoneNumber, password, date } = req.body;
+    const { name, profile_photo, email, phoneNumber, password } = req.body;
     const existing = await Customer.findOne({ email });
     if (existing) {
       return res
@@ -15,11 +15,11 @@ exports.customerRegister = async (req, res) => {
 
     const customer = await Customer.create({
       name,
-      image_url,
+      profile_photo,
       email,
       phoneNumber,
       password,
-      date,
+      // date,
     });
 
     res.status(201).json({

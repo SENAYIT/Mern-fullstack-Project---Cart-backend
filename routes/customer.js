@@ -5,11 +5,11 @@ const {
   getCustomer,
   updateCustomer,
   deleteCustomer,
-} = require("../controllers/customerController");
+} = require("../controllers/customer/customerController");
 
 const router = express.Router();
 // the below is with out  the token access
-router.get("/", getAllCustomers);
+router.get("/all", getAllCustomers);
 router.get("/:id", getCustomer);
 router.put("/:id", updateCustomer);
 router.delete("/:id", deleteCustomer);

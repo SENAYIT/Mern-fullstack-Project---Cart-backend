@@ -4,7 +4,7 @@ const express = require("express");
 const {
   customerLogin,
   customerRegister,
-} = require("../controllers/customerAuthController");
+} = require("../controllers/customer/customerAuthController");
 
 const router = express.Router();
 

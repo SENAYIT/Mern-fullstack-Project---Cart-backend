@@ -1,5 +1,5 @@
 // ✅ User Controller (controllers/userController.js)
-const Customer = require("../models/Customer");
+const Customer = require("../../models/Customer");
 const bcrypt = require("bcryptjs");
 
 // note : for getAllUsers and getUser
@@ -8,7 +8,9 @@ const bcrypt = require("bcryptjs");
 
 exports.getAllCustomers = async (req, res) => {
   try {
-    const customers = await Customer.find({}, "-password"); // hide password
+    const customers = await Customer.find({}, "-password").sort({
+      createdAt: -1,
+    }); // hide password
 
     if (!customers.length)
       return res.status(404).json({
@@ -51,21 +53,21 @@ exports.getCustomer = async (req, res) => {
 
 exports.updateCustomer = async (req, res) => {
   try {
-    const { name, image_url, email, phoneNumber, password, date } = req.body;
+    const { name, profile_photo, email, phoneNumber, password } = req.body;
 
-    // 👀 Build update object only with provided fields
+    // Build update object only with provided fields
     const updates = {};
     if (name) updates.name = name;
-    if (image_url) updates.image_url = image_url;
+    if (profile_photo) updates.profile_photo = profile_photo;
     if (email) updates.email = email;
     if (phoneNumber) updates.phoneNumber = phoneNumber;
     if (password) {
       const salt = await bcrypt.genSalt(10);
       updates.password = await bcrypt.hash(password, salt);
     }
-    if (date) updates.date = date;
+    // if (date) updates.date = date;
 
-    const updatedCustomer = await User.findByIdAndUpdate(
+    const updatedCustomer = await Customer.findByIdAndUpdate(
       req.params.id,
       updates,
       {
@@ -74,7 +76,7 @@ exports.updateCustomer = async (req, res) => {
       },
     ).select("-password");
 
-    if (!updatedUser)
+    if (!updatedCustomer)
       return res
         .status(404)
         .json({ success: false, message: "Customer not found" });

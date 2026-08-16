@@ -3,19 +3,12 @@ const bcrypt = require("bcryptjs"); // fixed typo
 
 const customerSchema = new mongoose.Schema(
   {
-    // id: {
-    //   type: String,
-    //   required: true,
-    //   unique: true,
-    //   trim: true,
-    // },
-
     name: {
       type: String,
       required: true,
       trim: true,
     },
-    image_url: {
+    profile_photo: {
       type: String,
       required: false,
       trim: true,
@@ -36,9 +29,16 @@ const customerSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    date: {
+
+    // date: {
+    //   type: String,
+    //   required: true,
+    // },
+    // now added
+    status: {
       type: String,
-      required: true,
+      enum: ["Active", "Inactive", "Blocked"],
+      default: "Active",
     },
   },
   { timestamps: true },
